@@ -1,0 +1,25 @@
+{
+  "name": "nexus-os",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Nexus Water DAO LLC dApp — mint, trade, govern environmental assets on XRPL",
+  "workspaces": [
+    "packages/shared",
+    "packages/client",
+    "packages/server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "npm run dev -w packages/client",
+    "dev:server": "npm run dev -w packages/server",
+    "build": "npm run build -w packages/shared && npm run build -w packages/client && npm run build -w packages/server",
+    "build:client": "npm run build -w packages/client",
+    "build:server": "npm run build -w packages/server",
+    "lint": "eslint packages/*/src --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit -p packages/client/tsconfig.json && tsc --noEmit -p packages/server/tsconfig.json"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-nexus-primary: #25D695;
+    --color-water: #00b8f0;
+    --color-energy: #f99d07;
+    --bg-base: #0B0F14;
+    --bg-card: #111820;
+    --bg-card-hover: #161E2A;
+    --border-default: #1C2432;
+    --accent: #25D695;
+    --accent-dim: #25D69540;
+  }
+
+  body {
+    @apply bg-[#0B0F14] text-gray-100 antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Ultra-dark scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1C2432;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #25D69540;
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6;
+  }
+
+  .page-title {
+    @apply text-xl font-semibold text-white tracking-tight mb-5;
+  }
+
+  /* Terminal-grade card */
+  .card {
+    background: #111820;
+    border: 1px solid #1C2432;
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.2s ease-out;
+  }
+
+  .card:hover {
+    border-color: #25D69540;
+    box-shadow: 0 0 20px rgba(37, 214, 149, 0.04);
+  }
+
+  .card-header {
+    @apply text-[10px] font-semibold uppercase tracking-[0.15em] mb-3;
+    color: #64748B;
+  }
+
+  .stat-value {
+    @apply text-2xl font-bold text-white tabular-nums;
+  }
+
+  .stat-label {
+    @apply text-xs mt-1;
+    color: #64748B;
+  }
+
+  /* Terminal label style */
+  .terminal-label {
+    @apply text-[10px] font-semibold uppercase tracking-[0.15em];
+    color: #64748B;
+  }
+
+  /* Glass effect — ultra-dark */
+  .glass {
+    background: rgba(11, 15, 20, 0.90);
+    backdrop-filter: blur(16px);
+    border-color: #1C2432;
+  }
+
+  /* Edge-glow card variant */
+  .card-glow {
+    background: #111820;
+    border: 1px solid #1C2432;
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.25s ease-out;
+  }
+
+  .card-glow:hover {
+    border-color: #25D69550;
+    box-shadow:
+      0 0 24px rgba(37, 214, 149, 0.06),
+      inset 0 1px 0 rgba(37, 214, 149, 0.05);
+  }
+
+  /* Status dots */
+  .status-dot {
+    @apply w-1.5 h-1.5 rounded-full;
+  }
+  .status-dot-active {
+    @apply status-dot bg-[#25D695] shadow-[0_0_6px_rgba(37,214,149,0.5)];
+  }
+  .status-dot-warning {
+    @apply status-dot bg-amber-400 shadow-[0_0_6px_rgba(251,191,36,0.4)];
+  }
+  .status-dot-error {
+    @apply status-dot bg-red-400 shadow-[0_0_6px_rgba(248,113,113,0.4)];
+  }
+
+  /* ── Focus ring for keyboard nav ────────── */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D695]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F14];
+  }
+
+  /* ── Interactive card — hover lift + glow ── */
+  .interactive-card {
+    background: #111820;
+    border: 1px solid #1C2432;
+    border-radius: 12px;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .interactive-card:hover {
+    border-color: #25D69530;
+    transform: translateY(-1px);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba(37, 214, 149, 0.04);
+  }
+  .interactive-card:active {
+    transform: translateY(0);
+  }
+
+  /* ── Button press effect ──────────────── */
+  .btn-press {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+
+  /* ── Fade-in animation ───────────────── */
+  .fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Stagger children ─── parent: .stagger-children ── */
+  .stagger-children > * {
+    animation: fadeIn 0.3s ease-out both;
+  }
+  .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 50ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 100ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 150ms; }
+  .stagger-children > *:nth-child(5) { animation-delay: 200ms; }
+  .stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+}
