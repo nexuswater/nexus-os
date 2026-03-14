@@ -6,6 +6,7 @@ import {
   Activity, Radio, Settings, Award, Eye, Sparkles,
   TrendingUp, Gift, Lock, Zap, Sun, Store,
   Handshake, ShieldCheck, Receipt, Brain, Cpu,
+  Heart, Leaf, Share2, Gauge,
 } from 'lucide-react';
 import { useWallet } from '@/hooks';
 import { TokenIcon } from '@/components/common';
@@ -44,6 +45,16 @@ const NAV_SECTIONS: NavSection[] = [
       { label: 'NFT Drops', path: '/giveaways', icon: Gift },
       { label: 'Community', path: '/scoring', icon: Award },
       { label: 'Transparency', path: '/transparency', icon: Eye },
+    ],
+  },
+  {
+    section: 'Environmental Market',
+    items: [
+      { label: 'Planetary Live', path: '/planetary', icon: Globe },
+      { label: 'Asset Router', path: '/asset-router', icon: Gauge },
+      { label: 'Carbon Credits', path: '/carbon', icon: Leaf },
+      { label: 'Mercy Network', path: '/mercy', icon: Heart },
+      { label: 'Impact Cards', path: '/impact-card', icon: Share2 },
     ],
   },
   {

@@ -89,6 +89,13 @@ import ReceiptsPage from '@/pages/Economy/Receipts';
 import BotsPage from '@/pages/Economy/Bots';
 import NEX from '@/pages/Exchange/NEX';
 
+// ─── Market / Environmental Asset pages ─────────────────
+import AssetRouter from '@/pages/Market/AssetRouter';
+import MercyNetwork from '@/pages/Market/MercyNetwork';
+import CarbonMarket from '@/pages/Market/CarbonMarket';
+import ImpactCard from '@/pages/Market/ImpactCard';
+import PlanetaryDashboard from '@/pages/Market/PlanetaryDashboard';
+
 /** Web dApp router — customer-first IA + advanced power tools */
 export const webRouter = createBrowserRouter([
   {
@@ -244,6 +251,16 @@ export const webRouter = createBrowserRouter([
       { path: 'water-market', element: <WaterMarket /> },
       { path: 'giveaways', element: <NFTGiveaway /> },
       { path: 'nex', element: <NEX /> },
+
+      // ══════════════════════════════════════════
+      // ENVIRONMENTAL MARKET
+      // ══════════════════════════════════════════
+
+      { path: 'asset-router', element: <AssetRouter /> },
+      { path: 'mercy', element: <MercyNetwork /> },
+      { path: 'carbon', element: <CarbonMarket /> },
+      { path: 'impact-card', element: <ImpactCard /> },
+      { path: 'planetary', element: <PlanetaryDashboard /> },
 
       // ══════════════════════════════════════════
       // LEGACY REDIRECTS

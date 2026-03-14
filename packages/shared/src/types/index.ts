@@ -15,3 +15,4 @@ export * from './agent';
 export * from './crosschain';
 export * from './scoring';
 export * from './agent-economy';
+export * from './environmental-asset';
