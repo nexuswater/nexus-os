@@ -21,7 +21,7 @@ export default function HeatmapLegend() {
 
   return (
     <div
-      className="absolute bottom-14 right-3 z-20 rounded-lg p-2 hidden sm:block"
+      className="absolute bottom-[86px] right-3 z-20 rounded-lg p-2 hidden sm:block"
       style={{
         background: GLASS.bg,
         backdropFilter: GLASS.blur,

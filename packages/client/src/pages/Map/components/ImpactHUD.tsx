@@ -133,7 +133,7 @@ export default function ImpactHUD() {
   }, [sites]);
 
   return (
-    <div className="absolute bottom-14 left-3 z-20 pointer-events-auto">
+    <div className="absolute bottom-[86px] left-3 z-20 pointer-events-auto hidden sm:block">
       {/* Toggle button */}
       <button
         className="mb-1.5 text-[7px] font-mono text-nexus-400/30 uppercase tracking-widest hover:text-nexus-400/60 transition-colors"
@@ -149,7 +149,7 @@ export default function ImpactHUD() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.25 }}
-            className="rounded-lg p-2 space-y-1.5 hidden sm:block"
+            className="rounded-lg p-2 space-y-1.5"
             style={{
               background: GLASS.bg,
               backdropFilter: GLASS.blur,

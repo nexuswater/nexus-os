@@ -4,6 +4,8 @@ import {
   BarChart3, Globe, User, ClipboardCheck, Shield,
   AlertTriangle, FileText, X, Database, Bot,
   Activity, Radio, Settings, Award, Eye, Sparkles,
+  TrendingUp, Gift, Lock, Zap, Sun, Store,
+  Handshake, ShieldCheck, Receipt, Brain, Cpu,
 } from 'lucide-react';
 import { useWallet } from '@/hooks';
 import { TokenIcon } from '@/components/common';
@@ -24,9 +26,39 @@ interface NavSection {
 
 const NAV_SECTIONS: NavSection[] = [
   {
-    section: 'Protocol',
+    section: 'Home',
     items: [
-      { label: 'Terminal', path: '/', icon: Home, end: true },
+      { label: 'Today', path: '/today', icon: Sun },
+      { label: 'Scores', path: '/scores', icon: Activity },
+      { label: 'Improve', path: '/improve', icon: TrendingUp },
+      { label: 'Rewards', path: '/rewards', icon: Gift },
+      { label: 'Vault', path: '/vault', icon: Lock, end: false },
+    ],
+  },
+  {
+    section: 'Explore',
+    items: [
+      { label: 'Infrastructure Map', path: '/map', icon: Globe },
+      { label: 'Water Market', path: '/water-market', icon: Droplets },
+      { label: 'NEX Exchange', path: '/nex', icon: BarChart3 },
+      { label: 'NFT Drops', path: '/giveaways', icon: Gift },
+      { label: 'Community', path: '/scoring', icon: Award },
+      { label: 'Transparency', path: '/transparency', icon: Eye },
+    ],
+  },
+  {
+    section: 'Agent Economy',
+    items: [
+      { label: 'Skills Market', path: '/economy', icon: Store, end: true },
+      { label: 'Env Market', path: '/economy/market', icon: ArrowLeftRight },
+      { label: 'Negotiations', path: '/economy/negotiations', icon: Handshake },
+      { label: 'Trust', path: '/economy/trust', icon: ShieldCheck },
+      { label: 'Receipts', path: '/economy/receipts', icon: Receipt },
+    ],
+  },
+  {
+    section: 'Advanced',
+    items: [
       { label: 'Swap', path: '/swap', icon: ArrowLeftRight },
       { label: 'Liquidity', path: '/liquidity', icon: Droplets },
       { label: 'Registry', path: '/registry', icon: ClipboardList },
@@ -36,19 +68,11 @@ const NAV_SECTIONS: NavSection[] = [
     ],
   },
   {
-    section: 'Intelligence',
-    items: [
-      { label: 'Nexus Score', path: '/scoring', icon: Award },
-      { label: 'Analytics', path: '/analytics', icon: BarChart3 },
-      { label: 'Oracle Feed', path: '/oracle', icon: Activity },
-      { label: 'Infrastructure Map', path: '/map', icon: Globe },
-      { label: 'Transparency', path: '/transparency', icon: Eye },
-    ],
-  },
-  {
     section: 'System',
     items: [
       { label: 'Settings', path: '/settings', icon: Settings },
+      { label: 'Feedback Lab', path: '/intelligence', icon: Brain },
+      { label: 'Simulator', path: '/simulator', icon: Cpu },
     ],
   },
 ];
@@ -82,12 +106,12 @@ export function Sidebar({ open, onClose }: SidebarProps) {
     >
       {/* Logo */}
       <div className="flex items-center justify-between h-12 px-5 border-b border-[#1C2432]">
-        <div className="flex items-center gap-2">
+        <NavLink to="/" className="flex items-center gap-2">
           <TokenIcon symbol="NXS" size={22} />
           <span className="text-base font-bold text-white tracking-tight">
             Nexus<span className="text-[#25D695]">OS</span>
           </span>
-        </div>
+        </NavLink>
         <button
           onClick={onClose}
           className="lg:hidden p-1.5 text-[#475569] hover:text-white rounded-lg hover:bg-[#1C2432]/60 transition-colors"

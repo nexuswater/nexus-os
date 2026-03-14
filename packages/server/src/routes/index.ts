@@ -17,9 +17,14 @@ import { vaultRouter } from './vault.js';
 import { agentsRouter } from './agents.js';
 import { chartsRouter } from './charts.js';
 import { crosschainRouter } from './crosschain.js';
+import { scoresRouter } from './scores.js';
+import { rewardsRouter } from './rewards.js';
+import { economyRouter } from './economy.js';
 
 export const router = Router();
 
+router.use('/scores', scoresRouter);
+router.use('/rewards', rewardsRouter);
 router.use('/wallet', walletRouter);
 router.use('/installations', installationsRouter);
 router.use('/proofs', proofsRouter);
@@ -38,3 +43,4 @@ router.use('/vault', vaultRouter);
 router.use('/agents', agentsRouter);
 router.use('/charts', chartsRouter);
 router.use('/crosschain', crosschainRouter);
+router.use('/economy', economyRouter);

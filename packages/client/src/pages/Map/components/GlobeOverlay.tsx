@@ -59,12 +59,12 @@ export default function GlobeOverlay() {
       </div>
 
       {/* ── Top HUD label ── */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
-        <div className="w-12 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(37,214,149,0.3) 100%)' }} />
-        <span className="text-[9px] font-mono tracking-[0.25em] text-nexus-400/50 uppercase whitespace-nowrap">
+      <div className="absolute top-4 left-4 right-28 flex items-center justify-center gap-2">
+        <div className="w-12 h-px shrink-0" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(37,214,149,0.3) 100%)' }} />
+        <span className="text-[9px] font-mono tracking-[0.25em] text-nexus-400/50 uppercase whitespace-nowrap truncate">
           nexus global water & energy network
         </span>
-        <div className="w-12 h-px" style={{ background: 'linear-gradient(270deg, transparent 0%, rgba(37,214,149,0.3) 100%)' }} />
+        <div className="w-12 h-px shrink-0" style={{ background: 'linear-gradient(270deg, transparent 0%, rgba(37,214,149,0.3) 100%)' }} />
       </div>
 
       {/* ── Projection mode badge — top right ── */}

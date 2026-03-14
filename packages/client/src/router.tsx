@@ -1,8 +1,20 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { WebLayout } from '@/components/layout/WebLayout';
 import { XAppLayout } from '@/components/layout/XAppLayout';
+import ErrorPage from '@/pages/ErrorPage';
 
-// ─── Page imports ────────────────────────────────────────
+// ─── New customer-first pages ──────────────────────────────
+import Landing from '@/pages/Landing';
+import Today from '@/pages/Today';
+import Scores from '@/pages/Scores';
+import Improve from '@/pages/Improve';
+import Rewards from '@/pages/Rewards';
+import VaultLayout from '@/pages/VaultTrust';
+import VaultVerification from '@/pages/VaultTrust/Verification';
+import TrustCenter from '@/pages/VaultTrust/TrustCenter';
+import YourData from '@/pages/VaultTrust/YourData';
+
+// ─── Existing page imports ─────────────────────────────────
 import Home from '@/pages/Home';
 import Assets from '@/pages/Assets';
 import BatchBreakdown from '@/pages/Assets/BatchBreakdown';
@@ -50,40 +62,96 @@ import CreateAgent from '@/pages/Agents/CreateAgent';
 import AgentTrading from '@/pages/Agents/Trading';
 import AgentIntents from '@/pages/Agents/Intents';
 
-// ─── New wrapper pages ───────────────────────────────────
 import Swap from '@/pages/Swap';
 import Registry from '@/pages/Registry';
 import Settings from '@/pages/Settings';
 import Transparency from '@/pages/Transparency';
+import FeedbackLab from '@/pages/Intelligence/FeedbackLab';
+import WaterMarket from '@/pages/Intelligence/WaterMarket';
+import EvolutionSimulator from '@/pages/Intelligence/EvolutionSimulator';
+import NFTGiveaway from '@/pages/Rewards/NFTGiveaway';
 
-// ─── Scoring pages ──────────────────────────────────────
 import ScoringHub from '@/pages/Scoring';
 import SubjectDetail from '@/pages/Scoring/SubjectDetail';
 import VerifyCertificate from '@/pages/Scoring/VerifyCertificate';
 
-// ─── Elementalz pages ──────────────────────────────────
 import Elementalz from '@/pages/Elementalz';
 import ElementalzGenesis from '@/pages/Elementalz/Genesis';
 import ElementalzTournaments from '@/pages/Elementalz/Tournaments';
 
-/** Web dApp router — institutional terminal layout */
+// ─── Agent Economy pages ──────────────────────────────────
+import EconomyLayout from '@/pages/Economy';
+import SkillsMarketEcon from '@/pages/Economy/SkillsMarket';
+import EnvironmentalMarket from '@/pages/Economy/EnvironmentalMarket';
+import NegotiationsPage from '@/pages/Economy/Negotiations';
+import TrustPage from '@/pages/Economy/Trust';
+import ReceiptsPage from '@/pages/Economy/Receipts';
+import BotsPage from '@/pages/Economy/Bots';
+import NEX from '@/pages/Exchange/NEX';
+
+/** Web dApp router — customer-first IA + advanced power tools */
 export const webRouter = createBrowserRouter([
   {
     element: <WebLayout />,
+    errorElement: <ErrorPage />,
     children: [
       // ══════════════════════════════════════════
-      // PRIMARY ROUTES (new sidebar structure)
+      // CUSTOMER-FIRST PRIMARY ROUTES
       // ══════════════════════════════════════════
 
-      // PROTOCOL
-      { index: true, element: <Home /> },
+      // Landing page (benefit-led)
+      { index: true, element: <Landing /> },
+
+      // Today dashboard (Apple Health style)
+      { path: 'today', element: <Today /> },
+
+      // Scores (Water / Energy / Impact)
+      { path: 'scores', element: <Scores /> },
+
+      // Improve (recommendation engine)
+      { path: 'improve', element: <Improve /> },
+
+      // Rewards (credits + redemption)
+      { path: 'rewards', element: <Rewards /> },
+
+      // Vault (verification, trust center, your data)
+      {
+        path: 'vault',
+        element: <VaultLayout />,
+        children: [
+          { index: true, element: <VaultVerification /> },
+          { path: 'trust', element: <TrustCenter /> },
+          { path: 'data', element: <YourData /> },
+        ],
+      },
+
+      // ══════════════════════════════════════════
+      // EXPLORE
+      // ══════════════════════════════════════════
+
+      { path: 'map', element: <MapDashboard /> },
+      { path: 'transparency', element: <Transparency /> },
+
+      // Community / Scoring
+      {
+        path: 'scoring',
+        children: [
+          { index: true, element: <ScoringHub /> },
+          { path: ':subjectId', element: <SubjectDetail /> },
+          { path: 'verify/:hash', element: <VerifyCertificate /> },
+        ],
+      },
+
+      // ══════════════════════════════════════════
+      // ADVANCED / POWER TOOLS
+      // ══════════════════════════════════════════
+
       { path: 'swap', element: <Swap /> },
       { path: 'liquidity', element: <Yield /> },
       {
         path: 'registry',
         children: [
           { index: true, element: <Registry /> },
-          // Sub-routes from Assets & Mint preserved
           { path: 'batches/:tokenType', element: <BatchBreakdown /> },
           { path: 'nfts', element: <NFTGallery /> },
           { path: 'mint/installation/new', element: <InstallationSetup /> },
@@ -117,7 +185,6 @@ export const webRouter = createBrowserRouter([
           { path: 'intents', element: <AgentIntents /> },
         ],
       },
-
       {
         path: 'elementalz',
         children: [
@@ -127,17 +194,26 @@ export const webRouter = createBrowserRouter([
         ],
       },
 
-      // SCORING
+      // ══════════════════════════════════════════
+      // AGENT ECONOMY
+      // ══════════════════════════════════════════
       {
-        path: 'scoring',
+        path: 'economy',
+        element: <EconomyLayout />,
         children: [
-          { index: true, element: <ScoringHub /> },
-          { path: ':subjectId', element: <SubjectDetail /> },
-          { path: 'verify/:hash', element: <VerifyCertificate /> },
+          { index: true, element: <SkillsMarketEcon /> },
+          { path: 'market', element: <EnvironmentalMarket /> },
+          { path: 'negotiations', element: <NegotiationsPage /> },
+          { path: 'trust', element: <TrustPage /> },
+          { path: 'bots', element: <BotsPage /> },
+          { path: 'receipts', element: <ReceiptsPage /> },
         ],
       },
 
-      // INTELLIGENCE
+      // ══════════════════════════════════════════
+      // ANALYTICS / INTELLIGENCE (legacy)
+      // ══════════════════════════════════════════
+
       {
         path: 'analytics',
         children: [
@@ -146,6 +222,8 @@ export const webRouter = createBrowserRouter([
           { path: 'nft/:nftId', element: <NFTImpact /> },
         ],
       },
+
+      // Legacy oracle → now vault
       {
         path: 'oracle',
         children: [
@@ -155,29 +233,30 @@ export const webRouter = createBrowserRouter([
           { path: 'verification', element: <Verification /> },
         ],
       },
-      { path: 'map', element: <MapDashboard /> },
-      { path: 'transparency', element: <Transparency /> },
 
+      // ══════════════════════════════════════════
       // SYSTEM
+      // ══════════════════════════════════════════
+
       { path: 'settings', element: <Settings /> },
+      { path: 'intelligence', element: <FeedbackLab /> },
+      { path: 'simulator', element: <EvolutionSimulator /> },
+      { path: 'water-market', element: <WaterMarket /> },
+      { path: 'giveaways', element: <NFTGiveaway /> },
+      { path: 'nex', element: <NEX /> },
 
       // ══════════════════════════════════════════
-      // LEGACY REDIRECTS (old URLs → new routes)
+      // LEGACY REDIRECTS
       // ══════════════════════════════════════════
 
-      // Assets → Registry
       { path: 'assets', element: <Navigate to="/registry" replace /> },
       { path: 'assets/batches/:tokenType', element: <Navigate to="/registry/batches/:tokenType" replace /> },
       { path: 'assets/nfts', element: <Navigate to="/registry/nfts" replace /> },
-
-      // Mint → Registry
       { path: 'mint', element: <Navigate to="/registry" replace /> },
       { path: 'mint/installation/new', element: <Navigate to="/registry/mint/installation/new" replace /> },
       { path: 'mint/proof/submit', element: <Navigate to="/registry/mint/proof/submit" replace /> },
       { path: 'mint/review', element: <Navigate to="/registry/mint/review" replace /> },
       { path: 'mint/batch/create', element: <Navigate to="/registry/mint/batch/create" replace /> },
-
-      // Marketplace → Swap (for now)
       {
         path: 'marketplace',
         children: [
@@ -188,8 +267,6 @@ export const webRouter = createBrowserRouter([
           { path: 'trade/:listingId', element: <TradePreview /> },
         ],
       },
-
-      // DAO → Governance
       { path: 'dao', element: <Navigate to="/governance" replace /> },
       { path: 'dao/proposals', element: <Navigate to="/governance/proposals" replace /> },
       { path: 'dao/proposals/new', element: <Navigate to="/governance/proposals/new" replace /> },
@@ -198,24 +275,16 @@ export const webRouter = createBrowserRouter([
       { path: 'dao/voting-power', element: <Navigate to="/governance/voting-power" replace /> },
       { path: 'dao/rules', element: <Navigate to="/governance/rules" replace /> },
       { path: 'dao/delegation', element: <Navigate to="/governance/delegation" replace /> },
-
-      // Impact → Analytics
       { path: 'impact', element: <Navigate to="/analytics" replace /> },
       { path: 'impact/dashboard', element: <Navigate to="/analytics/dashboard" replace /> },
-
-      // Yield → Liquidity
       { path: 'yield', element: <Navigate to="/liquidity" replace /> },
-
-      // Vault → Oracle Feed
       { path: 'vault/bills', element: <Navigate to="/oracle" replace /> },
       { path: 'vault/connect', element: <Navigate to="/oracle/connect" replace /> },
       { path: 'vault/iot', element: <Navigate to="/oracle/iot" replace /> },
       { path: 'vault/verification', element: <Navigate to="/oracle/verification" replace /> },
-
-      // Profile → Settings
       { path: 'profile', element: <Navigate to="/settings" replace /> },
 
-      // Admin routes remain as-is
+      // Admin routes
       {
         path: 'admin',
         children: [
@@ -236,8 +305,21 @@ export const webRouter = createBrowserRouter([
 export const xappRouter = createBrowserRouter([
   {
     element: <XAppLayout />,
+    errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <Today /> },
+      { path: 'scores', element: <Scores /> },
+      { path: 'improve', element: <Improve /> },
+      { path: 'rewards', element: <Rewards /> },
+      {
+        path: 'vault',
+        element: <VaultLayout />,
+        children: [
+          { index: true, element: <VaultVerification /> },
+          { path: 'trust', element: <TrustCenter /> },
+          { path: 'data', element: <YourData /> },
+        ],
+      },
       {
         path: 'assets',
         children: [
@@ -278,15 +360,6 @@ export const xappRouter = createBrowserRouter([
       },
       { path: 'yield', element: <Yield /> },
       {
-        path: 'vault',
-        children: [
-          { path: 'bills', element: <Bills /> },
-          { path: 'connect', element: <UtilityConnect /> },
-          { path: 'iot', element: <IoTDevices /> },
-          { path: 'verification', element: <Verification /> },
-        ],
-      },
-      {
         path: 'agents',
         children: [
           { index: true, element: <AgentsHub /> },
@@ -295,6 +368,7 @@ export const xappRouter = createBrowserRouter([
         ],
       },
       { path: 'profile', element: <Profile /> },
+      { path: 'settings', element: <Settings /> },
     ],
   },
 ]);
