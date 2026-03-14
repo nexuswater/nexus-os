@@ -1,6 +1,6 @@
 /**
- * WaterMarket — Bloomberg-style water commodity + carbon offset market simulation.
- * Tracks real-time water production, carbon prevention, regional pricing,
+ * WaterMarket — Bloomberg-style water + energy commodity + carbon offset market.
+ * Tracks real-time water/energy production, carbon prevention, regional pricing,
  * token architecture options, logistics, and AI agent trading activity.
  */
 
@@ -96,6 +96,14 @@ const KPI_DATA: KPICard[] = [
     color: '#00b8f0',
   },
   {
+    label: 'Energy Generation',
+    value: '2.4 MWh/day',
+    delta: '+8%',
+    deltaUp: true,
+    icon: Zap,
+    color: '#f99d07',
+  },
+  {
     label: 'Avg Water Price',
     value: '$0.0038/L',
     delta: '-3%',
@@ -104,8 +112,16 @@ const KPI_DATA: KPICard[] = [
     color: '#25D695',
   },
   {
+    label: 'Avg Energy Price',
+    value: '$0.087/kWh',
+    delta: '+4%',
+    deltaUp: true,
+    icon: TrendingUp,
+    color: '#f59e0b',
+  },
+  {
     label: 'Carbon Prevented Today',
-    value: '2,847 kg CO\u2082',
+    value: '2,847 kg CO₂',
     delta: '+18%',
     deltaUp: true,
     icon: Leaf,
@@ -282,10 +298,10 @@ export default function WaterMarket() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-lg sm:text-xl font-semibold text-white tracking-tight">
-            Water & Environmental Market
+            Water & Energy Environmental Market
           </h1>
           <span className="text-[10px] font-mono text-[#475569] uppercase tracking-wider hidden sm:inline">
-            // live water commodity + carbon offset simulation
+            // live water commodity + energy generation + carbon offset simulation
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -295,7 +311,7 @@ export default function WaterMarket() {
       </div>
 
       {/* ═══ A. KPI Bar ═══════════════════════════════════════ */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         {KPI_DATA.map((kpi) => {
           const Icon = kpi.icon;
           return (
@@ -379,6 +395,88 @@ export default function WaterMarket() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* ═══ B2. Energy Generation Summary ═══════════════════ */}
+      <div>
+        <SectionHeader>Energy Generation Network</SectionHeader>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-[#111820] border border-[#1C2432] rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-[#f99d07]/10 flex items-center justify-center">
+                <Sun size={16} className="text-[#f99d07]" />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-white">Solar Generation</h3>
+                <p className="text-[10px] text-[#64748B] font-mono">68% of network energy</p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between text-xs">
+                <span className="text-[#64748B]">Daily Output</span>
+                <span className="font-mono text-white tabular-nums">1,632 kWh</span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-[#64748B]">Active Arrays</span>
+                <span className="font-mono text-white tabular-nums">54 panels</span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-[#64748B]">Avg Price</span>
+                <span className="font-mono text-[#25D695] tabular-nums">$0.072/kWh</span>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#111820] border border-[#1C2432] rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-sky-400/10 flex items-center justify-center">
+                <Zap size={16} className="text-sky-400" />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-white">Microgrid Output</h3>
+                <p className="text-[10px] text-[#64748B] font-mono">22% of network energy</p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between text-xs">
+                <span className="text-[#64748B]">Daily Output</span>
+                <span className="font-mono text-white tabular-nums">528 kWh</span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-[#64748B]">Active Nodes</span>
+                <span className="font-mono text-white tabular-nums">18 units</span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-[#64748B]">Avg Price</span>
+                <span className="font-mono text-[#25D695] tabular-nums">$0.094/kWh</span>
+              </div>
+            </div>
+          </div>
+          <div className="bg-[#111820] border border-[#1C2432] rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-[#A78BFA]/10 flex items-center justify-center">
+                <Activity size={16} className="text-[#A78BFA]" />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-white">Hydrogen Production</h3>
+                <p className="text-[10px] text-[#64748B] font-mono">10% of network energy</p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between text-xs">
+                <span className="text-[#64748B]">Daily Output</span>
+                <span className="font-mono text-white tabular-nums">240 kWh equiv</span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-[#64748B]">Electrolyzers</span>
+                <span className="font-mono text-white tabular-nums">4 units</span>
+              </div>
+              <div className="flex justify-between text-xs">
+                <span className="text-[#64748B]">Avg Price</span>
+                <span className="font-mono text-[#25D695] tabular-nums">$0.112/kWh</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
